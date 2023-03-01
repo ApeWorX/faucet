@@ -1,0 +1,15 @@
+# Tools
+.mypy_cache/
+__pycache__/
+
+# js stuff
+dist/
+node_modules/
+package-lock.json
+
+# Dev database
+data.sqlite
+
+#docker 
+/docker/scripts/__pycache__
+/docker/faucet/__pycache__
