@@ -28,4 +28,4 @@ RUN poetry config virtualenvs.create false \
 # Creating folders, and files for a project:
 COPY ./faucet /app
 
-CMD ["uvicorn", "app:app"]
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
