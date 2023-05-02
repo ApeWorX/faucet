@@ -7,6 +7,7 @@ from ape import networks
 from ape_accounts import KeyfileAccount
 from fastapi import FastAPI, Query, Request
 from fastapi.staticfiles import StaticFiles
+from pydantic import AnyUrl, BaseModel
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 from slowapi.util import get_remote_address
@@ -24,6 +25,12 @@ ACCOUNT = KeyfileAccount(keyfile_path=(Path(__file__).parent / "bot.json"))
 ACCOUNT.set_autosign(True, passphrase="anvil")  # NOTE: Bundle account keyfile when building
 
 
+class FacuetResponse(BaseModel):
+    txn_hash: str
+    txn_url: AnyUrl | None = None
+    balance: int
+
+
 @app.get("/transfer/{address}")
 @limiter.limit("1/day")
 async def transfer(
@@ -31,15 +38,24 @@ async def transfer(
     address: str,
     amount: Annotated[int, Query(gt=0, lt=FAUCET_LIMIT)] = FAUCET_LIMIT,
     gas_limit: Annotated[int, Query(gt=21_000, lt=50_000)] = 35_000,
-):
+) -> FacuetResponse:
     """
     Send `amount` ether to `address`, with `gas_limit` given to transaction.
 
     Defaults to 1 ether and 35k gas.
     """
     with networks.parse_network_choice(NETWORK_TRIPLE) as provider:
-        tx = ACCOUNT.transfer(address, amount, gas_limit=gas_limit)
-        return {"txn_hash": tx.txn_hash, "balance": provider.get_balance(address)}
+        # NOTE: Do not wait for confirmation
+        tx = ACCOUNT.transfer(address, amount, gas_limit=gas_limit, required_confirmations=None)
+        return FacuetResponse(
+            txn_hash=tx.txn_hash,
+            txn_url=(
+                provider.network.explorer.get_transaction_url(tx.txn_hash)
+                if provider.network.explorer
+                else None
+            ),
+            balance=provider.get_balance(address) + amount,
+        )
 
 
 # NOTE: must come after any routes, to ensure the fallthrough works properly
