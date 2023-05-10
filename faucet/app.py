@@ -1,3 +1,4 @@
+import json
 import os
 from pathlib import Path
 from typing import Annotated
@@ -17,12 +18,16 @@ app = FastAPI()
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
-FAUCET_LIMIT = int(os.environ.get("FAUCET_TRANSFER_LIMIT", 10**18))
-
-NETWORK_TRIPLE = os.environ.get("FAUCET_RPC_ADDRESS", "http://localhost:8545")
+if os.environ.get("ACCOUNT_JSON"):
+    path = Path(__file__).parent / "bot.json"
+    path.write_text(os.environ.get("ACCOUNT_JSON"))
 
 ACCOUNT = KeyfileAccount(keyfile_path=(Path(__file__).parent / "bot.json"))
 ACCOUNT.set_autosign(True, passphrase="anvil")  # NOTE: Bundle account keyfile when building
+
+FAUCET_LIMIT = int(os.environ.get("FAUCET_TRANSFER_LIMIT", 10**18))
+
+NETWORK_TRIPLE = os.environ.get("FAUCET_RPC_ADDRESS", "http://localhost:8545")
 
 
 class FacuetResponse(BaseModel):
