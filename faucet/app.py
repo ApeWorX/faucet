@@ -18,9 +18,9 @@ app = FastAPI()
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
-if os.environ.get("ACCOUNT_JSON"):
+if account_json := os.environ.get("ACCOUNT_JSON"):
     path = Path(__file__).parent / "bot.json"
-    path.write_text(os.environ.get("ACCOUNT_JSON"))
+    path.write_text(account_json)
 
 ACCOUNT = KeyfileAccount(keyfile_path=(Path(__file__).parent / "bot.json"))
 ACCOUNT.set_autosign(True, passphrase="anvil")  # NOTE: Bundle account keyfile when building
