@@ -18,7 +18,7 @@ app = FastAPI()
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
-if account_json := os.environ.get("ACCOUNT_JSON"):
+if account_json := os.environ.get("BOT_ACCOUNT_JSON"):
     path = Path(__file__).parent / "bot.json"
     path.write_text(account_json)
 
@@ -27,7 +27,7 @@ ACCOUNT.set_autosign(True, passphrase="anvil")  # NOTE: Bundle account keyfile w
 
 FAUCET_LIMIT = int(os.environ.get("FAUCET_TRANSFER_LIMIT", 10**18))
 
-NETWORK_TRIPLE = os.environ.get("FAUCET_RPC_ADDRESS", "http://localhost:8545")
+NETWORK_TRIPLE = os.environ.get("BOT_NETWORK_CHOICE", "http://localhost:8545")
 
 
 class FaucetResponse(BaseModel):
