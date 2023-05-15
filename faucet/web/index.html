@@ -20,15 +20,15 @@
     <div class="form">
       <form>
         <input type="text" id="faucet-request">
-    <button onclick="callFaucet()">Submit</button>
+        <button type="submit" onclick="callFaucet(event)">Submit</button>
    
         <!-- Form fields go here -->
       </form>
     </div>
+    <div id="faucet-response"></div>
+    <div id="error-response"></div>
   </div>
 </div>
-<div id="faucet-response"></div>
-<p id="responseDiv"> This is the error </p>
 
 
     <script src="index.js"></script>

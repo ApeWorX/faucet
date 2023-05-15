@@ -3,9 +3,13 @@ function transfer(address) {
     .then(response => response.json())
     .then(data => {
       if (data.error) {
+        const errorDiv = document.getElementById('error-response');
         console.log(`Error: ${data.error}`);
-        responseDiv.innerHTML = `This is the error you got: ${data.error}`;
-      } 
+        errorDiv.innerHTML = `
+          <pre>
+            "ERROR": ${data.error}
+          </pre>
+      `} 
       else {
         const responseDiv = document.getElementById('faucet-response');
         responseDiv.innerHTML = `
@@ -21,7 +25,8 @@ function transfer(address) {
     });
 }
 
-function callFaucet() {
+function callFaucet(event) {
+  event.preventDefault();
   const addressInput = document.getElementById('faucet-request');
   const address = addressInput.value;
 
