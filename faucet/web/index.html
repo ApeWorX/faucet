@@ -1,13 +1,35 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Test Faucet</title>
+    <title>The Test Faucet</title>
+    <link href="faucetStylez.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-    <h1>What is the address you would like to receive some Eth?</h1>
-    <input type="text" id="faucet-request">
+
+
+    
+<div class="master-wrap">
+  <div class="inner-wrap">
+    <div class="logo">
+      <img src="./faucet-eth-apeworx.svg" alt="Logo">
+    </div>
+    <div class="description">
+      <h2>What address you would like to receive some Eth?</h2>
+      <p>The mermaid is generous</p>
+    </div>
+    <div class="form">
+      <form>
+        <input type="text" id="faucet-request">
     <button onclick="callFaucet()">Submit</button>
-    <div id="faucet-response"></div>
+   
+        <!-- Form fields go here -->
+      </form>
+    </div>
+  </div>
+</div>
+<div id="faucet-response"></div>
+<p id="responseDiv"> This is the error </p>
+
 
     <script src="index.js"></script>
   </body>

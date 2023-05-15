@@ -1,0 +1,49 @@
+/*AGBABBBYCAKES - AS OF 5.15.23 */
+/*ARTWORK BY ALDO ZUCCONI*/
+/*DEV AND DESIGN WORK BY ALEX GONZALEZ*/
+/*FOR APEWORX, LTD */
+
+
+:root {
+
+    --bodyBackgroundColor: #D2F3E2;
+}
+
+html {
+    background-color:var(--bodyBackgroundColor);
+}
+
+
+.master-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .inner-wrap {
+    text-align: center;
+  }
+  
+  .logo img {
+    max-width: 100%;;
+    height: auto;
+  }
+  
+  .description {
+    font-family: 'Barlow', sans-serif;
+    margin-top: 20px;
+  }
+  
+  .form {
+    margin-top: 20px;
+  }
+  
+  /* Media queries for responsive layout */
+  @media (max-width: 768px) {
+    .master-wrap {
+      height: auto;
+      padding: 20px;
+    }
+  }
+  

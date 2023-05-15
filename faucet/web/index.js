@@ -1,10 +1,12 @@
 function transfer(address) {
-  fetch(`http://127.0.0.1:8000/transfer/${address}`)
+  fetch(`${window.location.origin}/transfer/${address}`)
     .then(response => response.json())
     .then(data => {
       if (data.error) {
         console.log(`Error: ${data.error}`);
-      } else {
+        responseDiv.innerHTML = `This is the error you got: ${data.error}`;
+      } 
+      else {
         const responseDiv = document.getElementById('faucet-response');
         responseDiv.innerHTML = `
           <pre>
