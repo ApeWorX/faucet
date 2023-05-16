@@ -7,7 +7,8 @@
 :root {
 
     --bodyBackgroundColor: #D2F3E2;
-    --button-color: #b6f1d2;
+    --buttonColor: #b6f1d2;
+    --borderColor: #000000;
 }
 
 html {
@@ -88,6 +89,11 @@ html {
 
 #faucet-request {
     background-color:var(--bodyBackgroundColor);
+    border-style:solid;
+    border-color: var(--borderColor);
+    min-height:25px;
+    max-height:25px;
+    width:250px;
 }
 
 .submit-button {
@@ -95,4 +101,14 @@ html {
     font-family:'barlow';
     font-size: 500;
     border-style:solid;
+    border-color: var(--borderColor);
+    width:150px;
+    min-height:25px;
+    margin-left:5px;
+}
+
+.request-wrap {
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
 }
