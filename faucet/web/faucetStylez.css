@@ -7,10 +7,12 @@
 :root {
 
     --bodyBackgroundColor: #D2F3E2;
+    --button-color: #b6f1d2;
 }
 
 html {
     background-color:var(--bodyBackgroundColor);
+    )
 }
 
 
@@ -26,8 +28,9 @@ html {
   }
   
   .logo img {
-    max-width: 100%;;
+    max-width: 100%;
     height: auto;
+    mix-blend-mode: darken!important;
   }
   
   .description {
@@ -46,4 +49,50 @@ html {
       padding: 20px;
     }
   }
+
+  /*LOGO Business */
   
+  .top-left {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+  
+  .logo-container {
+    width: 200px;
+  }
+
+
+  
+  
+.logo-graphic {
+    max-width:64px;
+    height:auto;
+}
+
+.logo-graphic:hover {
+    filter: brightness(5);
+}
+
+/*.submit-button {
+    background-color:var(--button-color);
+    font-family:'barlow';
+    text-transform: uppercase;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #000000;
+    border-radius: 4px;
+
+}
+*/
+
+#faucet-request {
+    background-color:var(--bodyBackgroundColor);
+}
+
+.submit-button {
+    background-color:var(--bodyBackgroundColor);
+    font-family:'barlow';
+    font-size: 500;
+    border-style:solid;
+}

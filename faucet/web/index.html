@@ -1,26 +1,34 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>The Test Faucet</title>
+    <title>ApeWorX Test Faucet</title>
     <link href="faucetStylez.css" rel="stylesheet" type="text/css">
   </head>
   <body>
 
-
+    <div class="top-left">
+      <div class="logo-container">
+        <a href="https://apeworx.io">
+          <img src="./ApeWorX.png" alt="Logo" class="logo-graphic">
+        </a>
+      </div>
+    </div>
+    
     
 <div class="master-wrap">
   <div class="inner-wrap">
-    <div class="logo">
-      <img src="./faucet-eth-apeworx.svg" alt="Logo">
+   <div class="logo">
+      <img src="./faucet-eth-apeworx.svg" alt="Logo" class="logo-graphic">
     </div>
     <div class="description">
-      <h2>What address you would like to receive some Eth?</h2>
-      <p>The mermaid is generous</p>
+      <h2>What address you would like to receive the Eth?</h2>
+      <p>Our mermaid is generous and gorgeous.</p>
     </div>
     <div class="form">
       <form>
         <input type="text" id="faucet-request">
-        <button type="submit" onclick="callFaucet(event)">Submit</button>
+        
+        <button class="submit-button" type="submit" onclick="callFaucet(event)">Submit</button>
    
         <!-- Form fields go here -->
       </form>
