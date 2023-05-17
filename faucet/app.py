@@ -1,12 +1,13 @@
-import json
 import os
 from pathlib import Path
 from typing import Annotated
 
 import uvicorn
 from ape import networks
+from ape.exceptions import ApeException
 from ape_accounts import KeyfileAccount
 from fastapi import FastAPI, Query, Request
+from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import AnyUrl, BaseModel
 from slowapi import Limiter, _rate_limit_exceeded_handler
@@ -61,6 +62,11 @@ async def transfer(
             ),
             balance=provider.get_balance(address) + amount,
         )
+
+
+@app.exception_handler(ApeException)
+async def ape_exception_handler(request: Request, exc: ApeException):
+    return JSONResponse(status_code=400, content=dict(error=str(exc)))
 
 
 # NOTE: must come after any routes, to ensure the fallthrough works properly

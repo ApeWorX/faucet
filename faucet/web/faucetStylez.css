@@ -1,0 +1,114 @@
+/*AGBABBBYCAKES - AS OF 5.15.23 */
+/*ARTWORK BY ALDO ZUCCONI*/
+/*DEV AND DESIGN WORK BY ALEX GONZALEZ*/
+/*FOR APEWORX, LTD */
+
+
+:root {
+
+    --bodyBackgroundColor: #D2F3E2;
+    --buttonColor: #b6f1d2;
+    --borderColor: #000000;
+}
+
+html {
+    background-color:var(--bodyBackgroundColor);
+    )
+}
+
+
+.master-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .inner-wrap {
+    text-align: center;
+  }
+  
+  .logo img {
+    max-width: 100%;
+    height: auto;
+    mix-blend-mode: darken!important;
+  }
+  
+  .description {
+    font-family: 'Barlow', sans-serif;
+    margin-top: 20px;
+  }
+  
+  .form {
+    margin-top: 20px;
+  }
+  
+  /* Media queries for responsive layout */
+  @media (max-width: 768px) {
+    .master-wrap {
+      height: auto;
+      padding: 20px;
+    }
+  }
+
+  /*LOGO Business */
+  
+  .top-left {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+  
+  .logo-container {
+    width: 200px;
+  }
+
+
+  
+  
+.logo-graphic {
+    max-width:64px;
+    height:auto;
+}
+
+.logo-graphic:hover {
+    filter: brightness(5);
+}
+
+/*.submit-button {
+    background-color:var(--button-color);
+    font-family:'barlow';
+    text-transform: uppercase;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #000000;
+    border-radius: 4px;
+
+}
+*/
+
+#faucet-request {
+    background-color:var(--bodyBackgroundColor);
+    border-style:solid;
+    border-color: var(--borderColor);
+    min-height:25px;
+    max-height:25px;
+    width:250px;
+}
+
+.submit-button {
+    background-color:var(--bodyBackgroundColor);
+    font-family:'barlow';
+    font-size: 500;
+    border-style:solid;
+    border-color: var(--borderColor);
+    width:150px;
+    min-height:25px;
+    margin-left:5px;
+}
+
+.request-wrap {
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+}
