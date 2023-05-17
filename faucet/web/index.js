@@ -1,28 +1,30 @@
 function transfer(address) {
-  fetch(`${window.location.origin}/transfer/${address}`)
-    .then(response => response.json())
-    .then(data => {
-      if (data.error) {
-        const errorDiv = document.getElementById('error-response');
-        console.log(`Error: ${data.error}`);
-        errorDiv.innerHTML = `
-          <pre>
-            "ERROR": ${data.error}
-          </pre>
-      `} 
-      else {
-        const responseDiv = document.getElementById('faucet-response');
-        responseDiv.innerHTML = `
-          <pre>
-            "txn_hash": ${data.txn_hash}
-            "balance": ${data.balance}
-          </pre>
-        `;
-      }
-    })
-    .catch(error => {
-      console.log(`Error: ${error.message}`);
-    });
+  const responseDiv = document.getElementById('faucet-response');
+  const errorDiv = document.getElementById('error-response');
+  responseDiv.innerHTML = "";
+  errorDiv.innerHTML = "";
+
+  if (address === "") {
+    errorDiv.innerHTML = "<pre>ERROR: Must provide an address or ENS</pre>";
+  } else {
+    fetch(`${window.location.origin}/transfer/${address}`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.error) {
+          throw new Error(data.error);
+        } else {
+          responseDiv.innerHTML = `
+            <pre>
+              Transaction: ${data.txn_hash}
+              Your balance is now: ${data.balance}
+            </pre>
+          `;
+        }
+      })
+      .catch(error => {
+        errorDiv.innerHTML = `<pre>ERROR: ${error.message}</pre>`;
+      });
+  }
 }
 
 function callFaucet(event) {
