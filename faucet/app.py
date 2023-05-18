@@ -5,6 +5,7 @@ from typing import Annotated
 import uvicorn
 from ape import networks
 from ape.exceptions import ApeException
+from ape.types import AddressType
 from ape_accounts import KeyfileAccount
 from fastapi import FastAPI, Query, Request
 from fastapi.responses import JSONResponse
@@ -60,7 +61,7 @@ async def transfer(
                 if provider.network.explorer
                 else None
             ),
-            balance=provider.get_balance(address) + amount,
+            balance=provider.get_balance(address),
         )
 
 
