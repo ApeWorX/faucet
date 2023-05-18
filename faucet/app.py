@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import Annotated
 
 import uvicorn
-from ape import networks, config
+from ape import config, networks
 from ape.exceptions import ApeException
 from ape.types import AddressType
 from ape_accounts import KeyfileAccount
