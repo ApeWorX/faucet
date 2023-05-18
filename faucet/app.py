@@ -53,7 +53,7 @@ async def transfer(
     """
     with networks.parse_network_choice(NETWORK_TRIPLE) as provider:
         if "." in address:
-            address = convert("vitalik.eth", AddressType)
+            address = convert(address, AddressType)
         # NOTE: Do not wait for confirmation
         tx = ACCOUNT.transfer(address, amount, gas_limit=gas_limit, required_confirmations=None)
         return FaucetResponse(
