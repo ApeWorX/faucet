@@ -52,6 +52,7 @@ async def transfer(
     Defaults to 1 ether and 35k gas.
     """
     with networks.parse_network_choice(NETWORK_TRIPLE) as provider:
+        # Handle ENS domains by parsing for "."
         if "." in address:
             address = convert(address, AddressType)
         # NOTE: Do not wait for confirmation
