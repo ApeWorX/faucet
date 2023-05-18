@@ -132,11 +132,12 @@ html {
 
 .logo-logo {
   min-width:820px!important;
+  max-width:820px;
 }
 
 /*Mobile Logo*/
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 900px) {
   .logo-logo {
-    width:100%!important;
+    min-width:100%!important;
   }
 }
