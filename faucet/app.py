@@ -52,6 +52,8 @@ async def transfer(
     Defaults to 1 ether and 35k gas.
     """
     with networks.parse_network_choice(NETWORK_TRIPLE) as provider:
+        if "." in address:
+            address = convert("vitalik.eth", AddressType)
         # NOTE: Do not wait for confirmation
         tx = ACCOUNT.transfer(address, amount, gas_limit=gas_limit, required_confirmations=None)
         return FaucetResponse(
