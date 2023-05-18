@@ -13,15 +13,15 @@
 
 html {
     background-color:var(--bodyBackgroundColor);
-    )
+    
 }
 
 
 .master-wrap {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    align-items: flex-start; /* Updated alignment to flex-start */
+    max-height: 100vh;
   }
   
   .inner-wrap {
@@ -107,8 +107,23 @@ html {
     margin-left:5px;
 }
 
+.submit-button:hover {
+    background-color:#000000;
+    color:white;
+    cursor: pointer;
+}
+
 .request-wrap {
     display:flex;
     flex-direction:row;
     justify-content: center;
+}
+
+.top-splash {
+  width:100%;
+  height:100%;
+}
+
+.logo-logo {
+  width:100%;
 }
