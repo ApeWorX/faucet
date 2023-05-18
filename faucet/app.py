@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import Annotated
 
 import uvicorn
-from ape import networks
+from ape import config, convert, networks
 from ape.exceptions import ApeException
 from ape.types import AddressType
 from ape_accounts import KeyfileAccount
@@ -52,6 +52,9 @@ async def transfer(
     Defaults to 1 ether and 35k gas.
     """
     with networks.parse_network_choice(NETWORK_TRIPLE) as provider:
+        # Handle ENS domains by parsing for "."
+        if "." in address:
+            address = convert(address, AddressType)
         # NOTE: Do not wait for confirmation
         tx = ACCOUNT.transfer(address, amount, gas_limit=gas_limit, required_confirmations=None)
         return FaucetResponse(
