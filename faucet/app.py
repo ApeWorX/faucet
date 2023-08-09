@@ -20,7 +20,7 @@ app = FastAPI()
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
-if account_json := os.environ.get("BOT_ACCOUNT_JSON"):
+if account_json := os.environ.get("APE_FOUNDRY_HOST"):
     path = Path(__file__).parent / "bot.json"
     path.write_text(account_json)
 
