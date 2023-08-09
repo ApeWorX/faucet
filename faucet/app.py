@@ -29,7 +29,7 @@ ACCOUNT.set_autosign(True, passphrase="anvil")  # NOTE: Bundle account keyfile w
 
 FAUCET_LIMIT = int(os.environ.get("FAUCET_TRANSFER_LIMIT", 10**18))
 
-NETWORK_TRIPLE = os.environ.get("BOT_NETWORK_CHOICE", "http://localhost:8545")
+NETWORK_TRIPLE = os.environ.get("APE_FOUNDRY_HOST", "http://localhost:8545")
 
 
 class FaucetResponse(BaseModel):
