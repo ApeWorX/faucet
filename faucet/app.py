@@ -71,7 +71,7 @@ async def ape_exception_handler(request: Request, exc: ApeException):
 
 
 # NOTE: must come after any routes, to ensure the fallthrough works properly
-app.mount("/", StaticFiles(directory=(Path(__file__).parent / "web")), name="app")
+app.mount("/", StaticFiles(directory=(Path(__file__).parent / "web"), html=True), name="app")
 
 
 def start():
