@@ -14,11 +14,28 @@ from pydantic import AnyUrl, BaseModel
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 from slowapi.util import get_remote_address
+from typing import list
+from tokenlists import TokenListManager
+from ape import accounts
 
 limiter = Limiter(key_func=get_remote_address)
 app = FastAPI()
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+tlm = TokenListManager()
+tlm.install_tokenlist("tokens.1inch.eth")
+
+@app.get("/token-list/{chain_id}")
+def token_list(chain_id: int):
+    """
+    Gets list of tokens
+    """
+
+    # Get tokens (you can customize this with parameters if needed)
+    tokens = tlm.get_tokens(token_listname="1inch", chain_id=chain_id)
+
+    # Convert the filter object to a list and return it
+    return list(tokens)
 
 if account_json := os.environ.get("BOT_ACCOUNT_JSON"):
     path = Path(__file__).parent / "bot.json"
