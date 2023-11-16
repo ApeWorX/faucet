@@ -4,6 +4,7 @@ from typing import Annotated, list
 
 import uvicorn
 from ape import accounts, networks
+from ape.api.accounts import ImpersonatedAccount
 from ape.exceptions import ApeException
 from ape.types import AddressType
 from ape_accounts import KeyfileAccount
