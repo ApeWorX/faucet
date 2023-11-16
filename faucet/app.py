@@ -25,18 +25,6 @@ app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 tlm = TokenListManager()
 tlm.install_tokenlist("tokens.1inch.eth")
 
-@app.get("/token-list/{chain_id}")
-def token_list(chain_id: int):
-    """
-    Gets list of tokens
-    """
-
-    # Get tokens (you can customize this with parameters if needed)
-    tokens = tlm.get_tokens(token_listname="1inch", chain_id=chain_id)
-
-    # Convert the filter object to a list and return it
-    return list(tokens)
-
 if account_json := os.environ.get("BOT_ACCOUNT_JSON"):
     path = Path(__file__).parent / "bot.json"
     path.write_text(account_json)
@@ -80,6 +68,18 @@ async def transfer(
             ),
             balance=provider.get_balance(address),
         )
+    
+@app.get("/token-list/{chain_id}")
+def token_list(chain_id: int):
+    """
+    Gets list of tokens
+    """
+
+    # Get tokens (you can customize this with parameters if needed)
+    tokens = tlm.get_tokens(token_listname="1inch", chain_id=chain_id)
+
+    # Convert the filter object to a list and return it
+    return list(tokens)
 
 
 @app.exception_handler(ApeException)
