@@ -81,6 +81,17 @@ def token_list(chain_id: int):
     # Convert the filter object to a list and return it
     return list(tokens)
 
+@app.get("/token-transfer/{token-address}/{chain-id}")
+def token-transfer(chain_id: int, token-address: AddressType)
+    """ impersonate account and token transfer from that account"""
+    chain.provider._make_request("anvil_impersonateAccount", ["0x38225DE2EDa59e37b4B452c904fe21c507bbE4fa"])
+    acct = ImpersonatedAccount(raw_address="0x38225DE2EDa59e37b4B452c904fe21c507bbE4fa")
+    return acct.balance
+
+    # account = accounts["example.eth"]
+    # account.transfer()
+    # return "method not implemented"
+
 
 @app.exception_handler(ApeException)
 async def ape_exception_handler(request: Request, exc: ApeException):
