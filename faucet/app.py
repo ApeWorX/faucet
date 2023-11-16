@@ -1,9 +1,9 @@
 import os
 from pathlib import Path
-from typing import Annotated
+from typing import Annotated, list
 
 import uvicorn
-from ape import networks
+from ape import accounts, networks
 from ape.exceptions import ApeException
 from ape.types import AddressType
 from ape_accounts import KeyfileAccount
@@ -14,9 +14,7 @@ from pydantic import AnyUrl, BaseModel
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 from slowapi.util import get_remote_address
-from typing import list
 from tokenlists import TokenListManager
-from ape import accounts
 
 limiter = Limiter(key_func=get_remote_address)
 app = FastAPI()
@@ -68,7 +66,8 @@ async def transfer(
             ),
             balance=provider.get_balance(address),
         )
-    
+
+
 @app.get("/token-list/{chain_id}")
 def token_list(chain_id: int):
     """
