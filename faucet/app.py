@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import Annotated, list
 
 import uvicorn
-from ape import accounts, networks
+from ape import accounts, chain, networks
 from ape.api.accounts import ImpersonatedAccount
 from ape.exceptions import ApeException
 from ape.types import AddressType
@@ -81,10 +81,13 @@ def token_list(chain_id: int):
     # Convert the filter object to a list and return it
     return list(tokens)
 
-@app.get("/token-transfer/{token-address}/{chain-id}")
-def token-transfer(chain_id: int, token-address: AddressType)
-    """ impersonate account and token transfer from that account"""
-    chain.provider._make_request("anvil_impersonateAccount", ["0x38225DE2EDa59e37b4B452c904fe21c507bbE4fa"])
+
+@app.get("/token-transfer/{token_address}/{chain_id}")
+def token_transfer(token_address: AddressType, chain_id: int):
+    """impersonate account and token transfer from that account"""
+    chain.provider._make_request(
+        "anvil_impersonateAccount", ["0x38225DE2EDa59e37b4B452c904fe21c507bbE4fa"]
+    )
     acct = ImpersonatedAccount(raw_address="0x38225DE2EDa59e37b4B452c904fe21c507bbE4fa")
     return acct.balance
 
