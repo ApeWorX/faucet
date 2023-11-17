@@ -1,3 +1,2 @@
-ethereum:
-  mainnet:
-    default_provider: infura
+plugins:
+- name: ens
