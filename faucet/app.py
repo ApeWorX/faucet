@@ -22,8 +22,6 @@ limiter = Limiter(key_func=get_remote_address)
 app = FastAPI()
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
-tlm = TokenListManager()
-tlm.install_tokenlist("tokens.1inch.eth")
 
 if account_json := os.environ.get("BOT_ACCOUNT_JSON"):
     path = Path(__file__).parent / "bot.json"
@@ -68,7 +66,6 @@ async def transfer(
             ),
             balance=provider.get_balance(address),
         )
-
 
 token_list_source_uri = "https://gateway.ipfs.io/ipns/tokens.uniswap.org"
 
