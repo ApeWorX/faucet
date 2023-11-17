@@ -1,0 +1,12 @@
+name: faucet
+
+# NOTE: These plugins are only used for development purposes
+plugins:
+  - name: foundry
+  - name: alchemy
+
+foundry:
+  fork:
+    ethereum:
+      mainnet:
+        upstream_provider: alchemy
