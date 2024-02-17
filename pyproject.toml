@@ -19,7 +19,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "~3.10"
-fastapi = "^0.92.0"
+fastapi = "^0.109.1"
 uvicorn = "^0.20.0"
 eth-ape = "^0.6.7"
 ape-ens = "^0.6.0"
